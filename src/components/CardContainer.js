@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Card from './Card';
 import useWindowPositions from '../hook/useWindowPositions';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,15 +13,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function City() {
+export default function CardContainer() {
   const [getCity, setCity] = useState([]);
   const checked = useWindowPositions('header');
 
   useEffect(() => {
     const apiFetch = async () => {
-      const res = await fetch(`http://localhost:9393/`);
+      const res = await fetch('http://localhost:9393/city_guides');
       const resData = await res.json();
-      setCity(resData.getCity);
+      setCity(resData);
     };
     apiFetch();
   }, []);
@@ -29,7 +30,7 @@ export default function City() {
 
   return (
     <div className={classes.root}>
-      <Card checked={checked} />
+      <Card checked={checked} city={getCity} key={getCity.id} />
     </div>
   );
 }
