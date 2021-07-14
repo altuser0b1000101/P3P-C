@@ -10,7 +10,7 @@ import CardContainer from './components/CardContainer';
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
-    backgroundImage: `url(${process.env.PUBLIC_URL + 'assets/la.jpg'})`,
+    backgroundImage: `url(${process.env.PUBLIC_URL + 'assets/LA.jpg'})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },

@@ -40,7 +40,7 @@ export default function ImgMediaCard({ checked, city, key }) {
             <Grid item key={key} xs={12} sm={6} md={4}>
               <Card className={classes.card}>
                 <CardContent className={classes.titleB}>
-                  <Typography className={classes.title}>LA</Typography>
+                  <Typography className={classes.title}>{city.name}</Typography>
                 </CardContent>
                 <CardMedia
                   className={classes.media}
