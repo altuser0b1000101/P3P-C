@@ -21,9 +21,11 @@ export default function App() {
       <Router>
         <Switch>
           <Route path='/home' component={Home} strict />
+
           <Route path='/subscribe'>
             <Subscribe setUserData={setUserData} />
           </Route>
+
           <Route path='/login'>
             <Login setUserData={setUserData} />
           </Route>

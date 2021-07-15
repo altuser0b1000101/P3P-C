@@ -28,14 +28,13 @@ export default function Login({ setUserData }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  let history = useHistory();
+  const routes = ['/login'];
 
-  const routes = ['/user/login'];
+  let history = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
     fetch(`http://localhost:9393/users`, {
-      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -48,7 +47,7 @@ export default function Login({ setUserData }) {
       .then((data) => data.json())
       .then((newUser) => {
         setUserData(newUser);
-        history.push('/profile');
+        history.push('/login');
       });
   }
 
