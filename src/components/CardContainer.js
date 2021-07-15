@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
-import Card from './Card';
+import Cards from './Card';
 import useWindowPositions from '../hook/useWindowPositions';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ export default function CardContainer() {
 
   return (
     <div className={classes.root}>
-      <Card checked={checked} city={getCity} key={getCity.id} />
+      <Cards checked={checked} city={getCity} key={getCity.id} />
     </div>
   );
 }

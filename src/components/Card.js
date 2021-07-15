@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import CityLa from './CityLa';
+import La from './La';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -27,44 +27,46 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard({ checked, city, key }) {
+export default function Cards({ checked, city, key }) {
   const classes = useStyles();
 
-  const routes = [`/details/city`];
+  const routes = [`/city_guide`];
 
   return (
-    <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
-      <Container className={classes.root}>
-        <Grid container spacing={5}>
-          {city.map((city) => (
-            <Grid item key={key} xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardContent className={classes.titleB}>
-                  <Typography className={classes.title}>{city.name}</Typography>
-                </CardContent>
-                <CardMedia
-                  className={classes.media}
-                  component='img'
-                  alt='city'
-                  image={city.image_url}
-                  title='LA'
-                />
-                <CardActions>
-                  <Button
-                    size='small'
-                    color='primary'
-                    value={routes[0]}
-                    component={Link}
-                    to={`/details/city_guide`}
-                  >
-                    details
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Collapse>
+    <Router>
+      <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
+        <Container className={classes.root}>
+          <Grid container spacing={5}>
+            {city.map((city) => (
+              <Grid item key={key} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardContent className={classes.titleB}></CardContent>
+                  <CardMedia
+                    className={classes.media}
+                    component='img'
+                    alt='city'
+                    image={city.image_url}
+                    title='LA'
+                  />
+                  <Route path='/'>
+                    <CardActions>
+                      <Button
+                        size='small'
+                        color='primary'
+                        value={routes[0]}
+                        component={Link}
+                        to={'/city_guide'}
+                      >
+                        {city.name}
+                      </Button>
+                    </CardActions>
+                  </Route>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Collapse>
+    </Router>
   );
 }

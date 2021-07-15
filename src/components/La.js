@@ -27,7 +27,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function CityLa() {
+export default function La() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {

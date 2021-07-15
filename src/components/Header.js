@@ -4,6 +4,7 @@ import { AppBar, Collapse, IconButton, Toolbar } from '@material-ui/core';
 import SortIcon from '@material-ui/icons/Sort';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import FormButtons from './FormButtons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#FAFAFA',
   },
   iconDown: {
+    margin: 'auto',
     color: '#FAFAFA',
     fontSize: '60px',
   },
@@ -73,9 +75,7 @@ export default function Header() {
             <br />
             Cultura Online City Guides are available to our subscribers.
           </h1>
-          <IconButton>
-            <ArrowDropDownIcon className={classes.iconDown}></ArrowDropDownIcon>
-          </IconButton>
+          <FormButtons />
         </div>
       </Collapse>
     </div>
