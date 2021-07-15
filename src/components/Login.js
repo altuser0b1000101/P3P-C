@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
-    backgroundImage: `url(${process.env.PUBLIC_URL + 'assets/LA.jpg'})`,
+    backgroundImage: `url(${process.env.PUBLIC_URL + 'assets/mountain.jpg'})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },
@@ -16,41 +19,64 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     textAlign: 'center',
   },
-  text: {
-    color: '#FAFAFA',
-    fontFamily: 'Zen Loop',
-  },
 }));
 
 export default function Login() {
   const classes = useStyles();
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const [user, setUser] = useState('');
+
+  const routes = ['/user/login'];
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    fetch(`http://localhost:9393/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+      }),
+    })
+      .then((data) => data.json())
+      .then(console.log);
+  }
+
   return (
     <div className={classes.root}>
-      <Box
-        className={classes.box}
-        component='form'
-        sx={{
-          '& > :not(style)': { m: 1, width: '45ch' },
-        }}
-        noValidate
-        autoComplete='off'
-      >
-        <TextField
-          className={classes.text}
-          id='outlined-basic'
-          label='email'
-          variant='filled'
-        />
-
-        <TextField
-          id='filled-password-input'
-          label='Password'
-          type='password'
-          autoComplete='current-password'
-          variant='filled'
-        />
-      </Box>
+      <form onSubmit={handleSubmit}>
+        <Box
+          className={classes.box}
+          component='form'
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete='off'
+        >
+          <TextField
+            id='outlined-basic'
+            label='Name'
+            variant='filled'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            id='outlined-basic'
+            label='Email'
+            variant='filled'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Box>
+        <input className={classes.button} type='submit' value='Submit' />
+      </form>
     </div>
   );
 }

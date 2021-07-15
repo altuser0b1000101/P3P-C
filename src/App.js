@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import Header from './components/Header';
@@ -8,11 +8,14 @@ import CardContainer from './components/CardContainer';
 import Subscribe from './components/Subscribe';
 import Login from './components/Login';
 import Home from './Home';
-import UserLogin from './components/UserLogin';
+import Profile from './components/Profile';
+import { LoginContext } from './components/LoginContext';
 
 export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
-    <div>
+    <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
       <CssBaseline />
       <Router>
         <Switch>
@@ -20,9 +23,9 @@ export default function App() {
           <Route path='/subscribe' component={Subscribe} strict />
           <Route path='/login' component={Login} strict />
           <Route path='/city_guide' component={LA} strict />
-          <Route path='/user/home' component={UserLogin} strict />
+          <Route path='/user/home' component={Profile} strict />
         </Switch>
       </Router>
-    </div>
+    </LoginContext.Provider>
   );
 }

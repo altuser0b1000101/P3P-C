@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import LoginContext from './LoginContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +28,8 @@ export default function Subscribe() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
+  const [LoggedIn, setLoggedIn] = useContext(LoginContext);
+
   const routes = ['/user/home'];
 
   function handleSubmit(event) {
@@ -39,7 +44,9 @@ export default function Subscribe() {
         name: name,
         email: email,
       }),
-    }).then((data) => data.json());
+    })
+      .then((data) => data.json())
+      .then(console.log);
   }
 
   return (
@@ -68,14 +75,8 @@ export default function Subscribe() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-           <Button   type="submit"
-                         ....
-                        className={classes.button}
-                    >
-                        Login
-                    </Button>
-          <input type='submit' value='Submit' />
         </Box>
+        <input className={classes.button} type='submit' value='Submit' />
       </form>
     </div>
   );
