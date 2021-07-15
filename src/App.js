@@ -8,6 +8,7 @@ import CardContainer from './components/CardContainer';
 import Subscribe from './components/Subscribe';
 import Login from './components/Login';
 import Home from './Home';
+import UserLogin from './components/UserLogin';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path='/subscribe' component={Subscribe} strict />
           <Route path='/login' component={Login} strict />
           <Route path='/city_guide' component={LA} strict />
+          <Route path='/user/home' component={UserLogin} strict />
         </Switch>
       </Router>
     </div>

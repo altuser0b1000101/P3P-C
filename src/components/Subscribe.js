@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +25,8 @@ export default function Subscribe() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
+  const routes = ['/user/home'];
+
   function handleSubmit(event) {
     event.preventDefault();
     fetch(`http://localhost:9393/users`, {
@@ -36,7 +39,7 @@ export default function Subscribe() {
         name: name,
         email: email,
       }),
-    }).then((res) => res.json());
+    }).then((data) => data.json());
   }
 
   return (
@@ -65,8 +68,14 @@ export default function Subscribe() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+           <Button   type="submit"
+                         ....
+                        className={classes.button}
+                    >
+                        Login
+                    </Button>
+          <input type='submit' value='Submit' />
         </Box>
-        <input type='submit' value='Submit' />
       </form>
     </div>
   );

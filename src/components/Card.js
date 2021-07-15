@@ -12,6 +12,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import La from './La';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles({
   root: {
@@ -52,6 +54,10 @@ export default function Cards({ checked, city, key }) {
                     path='/'
                     render={(history) => (
                       <CardActions>
+                        <IconButton aria-label='add to favorites'>
+                          <FavoriteIcon />
+                        </IconButton>
+
                         <Button
                           value={history.location.pathname}
                           size='small'
