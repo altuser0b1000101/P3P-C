@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
-import LoginContext from './LoginContext';
+import LoginContext from '../LoginContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +28,7 @@ export default function Subscribe() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const [LoggedIn, setLoggedIn] = useContext(LoginContext);
+  const [userData, setUserData] = useState([]);
 
   const routes = ['/user/home'];
 
@@ -44,9 +44,7 @@ export default function Subscribe() {
         name: name,
         email: email,
       }),
-    })
-      .then((data) => data.json())
-      .then(console.log);
+    }).then((data) => data.json());
   }
 
   return (
@@ -76,7 +74,12 @@ export default function Subscribe() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Box>
-        <input className={classes.button} type='submit' value='Submit' />
+        <input
+          className={classes.button}
+          type='submit'
+          value='Submit'
+          to='/user/profile'
+        />
       </form>
     </div>
   );

@@ -9,23 +9,26 @@ import Subscribe from './components/Subscribe';
 import Login from './components/Login';
 import Home from './Home';
 import Profile from './components/Profile';
-import { LoginContext } from './components/LoginContext';
+// import LoginContext from './LoginContext';
+import { createContext } from 'react-dom';
 
 export default function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const LoginContext = createContext(null);
 
   return (
-    <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
+    <>
       <CssBaseline />
       <Router>
         <Switch>
+          {/* <LoginContext.Provider value={null}> */}
           <Route path='/home' component={Home} strict />
           <Route path='/subscribe' component={Subscribe} strict />
           <Route path='/login' component={Login} strict />
           <Route path='/city_guide' component={LA} strict />
-          <Route path='/user/home' component={Profile} strict />
+          <Route path='/profile' component={Profile} strict />
+          {/* </LoginContext.Provider> */}
         </Switch>
       </Router>
-    </LoginContext.Provider>
+    </>
   );
 }
