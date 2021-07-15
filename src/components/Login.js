@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+export default function Login({ setUserData }) {
   const classes = useStyles();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const [user, setUser] = useState('');
+  let history = useHistory();
 
   const routes = ['/user/login'];
 
@@ -45,7 +46,10 @@ export default function Login() {
       }),
     })
       .then((data) => data.json())
-      .then(console.log);
+      .then((newUser) => {
+        setUserData(newUser);
+        history.push('/profile');
+      });
   }
 
   return (

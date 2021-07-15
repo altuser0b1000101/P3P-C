@@ -9,24 +9,29 @@ import Subscribe from './components/Subscribe';
 import Login from './components/Login';
 import Home from './Home';
 import Profile from './components/Profile';
-// import LoginContext from './LoginContext';
+
 import { createContext } from 'react-dom';
 
 export default function App() {
-  // const LoginContext = createContext(null);
+  const [userData, setUserData] = useState([]);
 
   return (
     <>
       <CssBaseline />
       <Router>
         <Switch>
-          {/* <LoginContext.Provider value={null}> */}
           <Route path='/home' component={Home} strict />
-          <Route path='/subscribe' component={Subscribe} strict />
-          <Route path='/login' component={Login} strict />
+          <Route path='/subscribe'>
+            <Subscribe setUserData={setUserData} />
+          </Route>
+          <Route path='/login'>
+            <Login setUserData={setUserData} />
+          </Route>
+
           <Route path='/city_guide' component={LA} strict />
-          <Route path='/profile' component={Profile} strict />
-          {/* </LoginContext.Provider> */}
+          <Route path='/profile'>
+            <Profile userData={userData} />
+          </Route>
         </Switch>
       </Router>
     </>

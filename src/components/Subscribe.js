@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import LoginContext from '../LoginContext';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,15 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Subscribe() {
+export default function Subscribe({ setUserData }) {
   const classes = useStyles();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const [userData, setUserData] = useState([]);
-
   const routes = ['/user/home'];
+  let history = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -44,7 +44,12 @@ export default function Subscribe() {
         name: name,
         email: email,
       }),
-    }).then((data) => data.json());
+    })
+      .then((data) => data.json())
+      .then((newUser) => {
+        setUserData(newUser);
+        history.push('/profile');
+      });
   }
 
   return (
