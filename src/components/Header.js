@@ -5,6 +5,10 @@ import SortIcon from '@material-ui/icons/Sort';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import FormButtons from './FormButtons';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import Profile from './Profile';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,12 +47,29 @@ const useStyles = makeStyles((theme) => ({
     color: '#FAFAFA',
     fontSize: '60px',
   },
+  textColor: {
+    color: '#FAFAFA',
+    fontFamily: 'Zen Loop',
+    fontSize: '60px',
+  },
 }));
+
+const routes = ['/profile'];
 
 export default function Header() {
   const classes = useStyles();
 
   const [checked, setChecked] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   useEffect(() => {
     setChecked(true);
   }, []);
@@ -60,9 +81,26 @@ export default function Header() {
           <nav className={classes.appbarTitle} to='/'>
             cultura
           </nav>
-          <IconButton>
-            <SortIcon className={classes.icon} />
-          </IconButton>
+          <Button
+            className={classes.textColor}
+            aria-controls='simple-menu'
+            aria-haspopup='true'
+            onClick={handleClick}
+            to={routes[0]}
+            value={routes[0]}
+            component={Link}
+          >
+            My Profile
+          </Button>
+          <Menu
+            id='simple-menu'
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
       <Collapse

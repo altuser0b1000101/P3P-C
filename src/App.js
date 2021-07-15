@@ -9,6 +9,7 @@ import Subscribe from './components/Subscribe';
 import Login from './components/Login';
 import Home from './Home';
 import Profile from './components/Profile';
+import Footer from './components/Footer';
 
 import { createContext } from 'react-dom';
 
@@ -35,6 +36,7 @@ export default function App() {
           </Route>
         </Switch>
       </Router>
+      <Footer />
     </>
   );
 }
