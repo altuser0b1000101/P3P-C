@@ -15,7 +15,7 @@ export default function App() {
       <CssBaseline />
       <Router>
         <Switch>
-          <Route path='/' component={Home} strict />
+          <Route path='/home' component={Home} strict />
           <Route path='/subscribe' component={Subscribe} strict />
           <Route path='/login' component={Login} strict />
           <Route path='/city_guide' component={LA} strict />

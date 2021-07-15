@@ -48,19 +48,23 @@ export default function Cards({ checked, city, key }) {
                     image={city.image_url}
                     title='LA'
                   />
-                  <Route path='/'>
-                    <CardActions>
-                      <Button
-                        size='small'
-                        color='primary'
-                        value={routes[0]}
-                        component={Link}
-                        to={'/city_guide'}
-                      >
-                        {city.name}
-                      </Button>
-                    </CardActions>
-                  </Route>
+                  <Route
+                    path='/'
+                    render={(history) => (
+                      <CardActions>
+                        <Button
+                          value={history.location.pathname}
+                          size='small'
+                          color='primary'
+                          value={routes[0]}
+                          component={Link}
+                          to={'/city_guide'}
+                        >
+                          {city.name}
+                        </Button>
+                      </CardActions>
+                    )}
+                  />
                 </Card>
               </Grid>
             ))}

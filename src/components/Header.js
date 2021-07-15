@@ -57,7 +57,9 @@ export default function Header() {
     <div className={classes.root} id='header'>
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar className={classes.appbarWrapper}>
-          <h1 className={classes.appbarTitle}>cultura</h1>
+          <nav className={classes.appbarTitle} to='/'>
+            cultura
+          </nav>
           <IconButton>
             <SortIcon className={classes.icon} />
           </IconButton>
