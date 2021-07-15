@@ -35,6 +35,7 @@ export default function Login({ setUserData }) {
   function handleSubmit(event) {
     event.preventDefault();
     fetch(`http://localhost:9393/users`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -47,7 +48,7 @@ export default function Login({ setUserData }) {
       .then((data) => data.json())
       .then((newUser) => {
         setUserData(newUser);
-        history.push('/login');
+        history.push('/profile');
       });
   }
 

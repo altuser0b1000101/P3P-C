@@ -30,7 +30,6 @@ export default function App() {
             <Login setUserData={setUserData} />
           </Route>
 
-          <Route path='/city_guide' component={LA} strict />
           <Route path='/profile'>
             <Profile userData={userData} />
           </Route>
