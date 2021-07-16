@@ -16,7 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
-    backgroundImage: `url(${process.env.PUBLIC_URL + 'assets/LA.jpg'})`,
+    backgroundImage: `url(${process.env.PUBLIC_URL + 'assets/4.jpg'})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },
@@ -46,8 +46,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '70px',
   },
   appbarWrapper: {
-    width: '80%',
-    margin: '0 auto',
+    color: '#FAFAFA',
+    fontFamily: 'Zen Loop',
+    fontSize: '60px',
+    marginLeft: '1500px',
+  },
+  contain: {
+    color: '#FAFAFA',
+    fontFamily: 'Zen Loop',
+    fontSize: '60px',
   },
 }));
 
@@ -69,8 +76,9 @@ const Profile = ({ userData }) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Toolbar className={classes.appbarWrapper}>
+      <Toolbar>
         <Button
+          className={classes.appbarWrapper}
           aria-controls='simple-menu'
           aria-haspopup='true'
           onClick={handleClick}
@@ -78,7 +86,7 @@ const Profile = ({ userData }) => {
           value={routes[0]}
           component={Link}
         >
-          My Profile
+          Home
         </Button>
         <Menu
           id='simple-menu'
@@ -90,8 +98,25 @@ const Profile = ({ userData }) => {
           <MenuItem onClick={handleClose}>Profile</MenuItem>
         </Menu>
       </Toolbar>
-      <nav className={classes.appbar}>Welcome {userData.name}</nav>
+      <nav className={classes.appbar}>Welcome {userData.email}</nav>
       <p className={classes.text}>thanks for joining cultura</p>
+      <Container className={classes.contain}>
+        <Typography variant='h5' align='center' gutterBottom>
+          Newsletter Edition: {userData}
+        </Typography>
+        <Typography variant='h6' align='center' gutterBottom>
+          City:
+        </Typography>
+        <Typography variant='h6' align='center' gutterBottom>
+          Art:
+        </Typography>
+        <Typography variant='h6' align='center' gutterBottom>
+          Design:
+        </Typography>
+        <Typography variant='h6' align='center' gutterBottom>
+          Style:
+        </Typography>
+      </Container>
     </div>
   );
 };

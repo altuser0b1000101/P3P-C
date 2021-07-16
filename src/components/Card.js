@@ -30,9 +30,18 @@ const useStyles = makeStyles({
 });
 
 export default function Cards({ checked, city, key }) {
+  // const [getGuide, setGuide] = useState([]);
   const classes = useStyles();
+  const routes = [`/cityguide`];
 
-  const routes = [`/city_guide`];
+  // useEffect(() => {
+  //   const apiFetch = async () => {
+  //     const res = await fetch('http://localhost:9393/city_guides');
+  //     const resData = await res.json();
+  //     setCity(resData);
+  //   };
+  //   apiFetch();
+  // }, []);
 
   return (
     <Router>

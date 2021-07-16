@@ -1,12 +1,18 @@
 import React, { useState, useContext } from 'react';
 import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
-import LoginContext from '../LoginContext';
 import { useHistory } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import { AppBar, Collapse, IconButton, Toolbar } from '@material-ui/core';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +27,28 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     textAlign: 'center',
   },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  avatar: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  appbarWrapper: {
+    color: 'black',
+    fontFamily: 'Zen Loop',
+    fontSize: '60px',
+    marginLeft: '1500px',
+  },
+  // paper: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   fontFamily: 'Zen Loop',
+  // },
 }));
 
 export default function Subscribe({ setUserData }) {
@@ -29,7 +57,17 @@ export default function Subscribe({ setUserData }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const routes = ['/user/home'];
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const routes = ['/home'];
   let history = useHistory();
 
   function handleSubmit(event) {
@@ -49,11 +87,35 @@ export default function Subscribe({ setUserData }) {
       .then((newUser) => {
         setUserData(newUser);
         history.push('/profile');
+        console.log(newUser);
       });
   }
 
   return (
     <div className={classes.root}>
+      <CssBaseline />
+      <Toolbar>
+        <Button
+          className={classes.appbarWrapper}
+          aria-controls='simple-menu'
+          aria-haspopup='true'
+          onClick={handleClick}
+          to={routes[0]}
+          value={routes[0]}
+          component={Link}
+        >
+          Home
+        </Button>
+        <Menu
+          id='simple-menu'
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+        </Menu>
+      </Toolbar>
       <form onSubmit={handleSubmit}>
         <Box
           className={classes.box}

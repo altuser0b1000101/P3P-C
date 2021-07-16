@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardContainer() {
   const [getCity, setCity] = useState([]);
+
   const checked = useWindowPositions('header');
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function CardContainer() {
       const res = await fetch('http://localhost:9393/city_guides');
       const resData = await res.json();
       setCity(resData);
+      console.log(resData);
     };
     apiFetch();
   }, []);
